@@ -11,7 +11,7 @@ A tool for analyzing code review feedback patterns to help developers improve th
 ### Setup
 ```bash
 # 1. Clone and enter the repository
-git clone <this-repo-url>
+git clone https://github.com/dbtreasure/pull-request-report
 cd pull-request-report
 
 # 2. Authenticate GitHub (if needed)
