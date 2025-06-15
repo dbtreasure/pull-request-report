@@ -1,0 +1,28 @@
+# Private analysis reports and repository-specific content
+/reports/
+/repos/
+
+# User-specific configuration
+config.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+env/
+.env
+
+# Logs
+*.log

@@ -1,0 +1,26 @@
+{
+  "repositories": [
+    {
+      "name": "example-repo",
+      "github_url": "https://github.com/owner/repo-name",
+      "local_path": "~/Development/repo-name",
+      "description": "Brief description of your role and contributions to this repo",
+      "learning_goals": [
+        "Improve understanding of specific technology or pattern",
+        "Reduce common PR feedback about X",
+        "Learn best practices for Y"
+      ],
+      "focus_areas": [
+        "async/await patterns",
+        "API design",
+        "code organization"
+      ]
+    }
+  ],
+  "analysis_settings": {
+    "pr_limit": 10,
+    "include_draft_prs": false,
+    "include_closed_prs": true,
+    "author": "your-github-username"
+  }
+}
