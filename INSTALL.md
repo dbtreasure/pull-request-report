@@ -108,7 +108,7 @@ black --check .
 ## 📋 System Requirements
 
 ### Minimum Requirements
-- **Python**: 3.8 or higher
+- **Python**: 3.9 or higher
 - **Operating System**: macOS, Linux, or Windows
 - **Memory**: 100MB free space
 - **Network**: Internet access for GitHub API
