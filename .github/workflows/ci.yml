@@ -97,6 +97,10 @@ jobs:
 
   security:
     runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
     steps:
     - uses: actions/checkout@v4
 
@@ -110,6 +114,15 @@ jobs:
 
     - name: Upload Trivy scan results
       uses: github/codeql-action/upload-sarif@v3
-      if: always()
+      if: github.event_name != 'pull_request' && github.repository_owner == 'dbtreasure'
       with:
         sarif_file: 'trivy-results.sarif'
+
+    - name: Show Trivy results (fallback)
+      if: always()
+      run: |
+        if [ -f trivy-results.sarif ]; then
+          echo "Security scan completed. Results saved to trivy-results.sarif"
+          # Show a summary of findings if any
+          cat trivy-results.sarif | jq -r '.runs[0].results[]?.message?.text // "No vulnerabilities found"' | head -10 || echo "Security scan completed"
+        fi
