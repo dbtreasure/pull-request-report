@@ -115,12 +115,13 @@ black --check .
 
 ### Required External Tools
 - **GitHub CLI (gh)**: For accessing GitHub repositories
-- **wkhtmltopdf** (optional): For PDF generation
-  - macOS: `brew install wkhtmltopdf`
-  - Ubuntu: `sudo apt install wkhtmltopdf`
-  - Windows: Download from [wkhtmltopdf.org](https://wkhtmltopdf.org/downloads.html)
 
-Note: If wkhtmltopdf is not available, the tool will use weasyprint for PDF generation.
+### Optional Tools
+- **wkhtmltopdf** (optional, discontinued): For PDF generation
+  - Note: wkhtmltopdf has been discontinued upstream and may not be available
+  - The tool uses weasyprint for PDF generation by default
+  - Ubuntu: `sudo apt install wkhtmltopdf` (if available)
+  - Windows: Download from [wkhtmltopdf.org](https://wkhtmltopdf.org/downloads.html) (if available)
 
 ## ⚠️ Troubleshooting
 

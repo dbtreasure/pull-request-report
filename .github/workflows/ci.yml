@@ -37,12 +37,12 @@ jobs:
           brew install gh
         fi
 
-    - name: Install wkhtmltopdf
+    - name: Install wkhtmltopdf (optional)
       run: |
         if [[ "$RUNNER_OS" == "Linux" ]]; then
-          sudo apt-get install -y wkhtmltopdf
+          sudo apt-get install -y wkhtmltopdf || echo "wkhtmltopdf installation failed, will use weasyprint"
         elif [[ "$RUNNER_OS" == "macOS" ]]; then
-          brew install wkhtmltopdf
+          brew install wkhtmltopdf || echo "wkhtmltopdf not available on macOS, will use weasyprint"
         fi
 
     - name: Install dependencies
