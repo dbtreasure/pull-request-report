@@ -22,5 +22,10 @@
     "include_draft_prs": false,
     "include_closed_prs": true,
     "author": "your-github-username"
+  },
+  "engineering_docs": {
+    "github_url": "https://github.com/your-org/docs-repo",
+    "enabled": false,
+    "last_synced": null
   }
 }

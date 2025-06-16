@@ -1,0 +1,46 @@
+{
+  "repositories": [
+    {
+      "name": "test-api",
+      "github_url": "https://github.com/testorg/test-api",
+      "description": "Senior Backend Engineer working on API architecture and performance optimization",
+      "learning_goals": [
+        "Clean code principles",
+        "FastAPI best practices",
+        "API design patterns",
+        "Async programming"
+      ],
+      "focus_areas": [
+        "Code organization",
+        "Error handling",
+        "Performance optimization",
+        "Testing strategies"
+      ]
+    },
+    {
+      "name": "frontend-app", 
+      "github_url": "https://github.com/testorg/frontend-app",
+      "description": "Contributing to React frontend development",
+      "learning_goals": [
+        "React patterns",
+        "State management",
+        "Component design"
+      ],
+      "focus_areas": [
+        "Hooks usage",
+        "Performance",
+        "Accessibility"
+      ]
+    }
+  ],
+  "analysis_settings": {
+    "author": "testuser",
+    "pr_limit": 10,
+    "include_closed_prs": true
+  },
+  "engineering_docs": {
+    "github_url": "https://github.com/testorg/engineering-docs",
+    "enabled": true,
+    "last_synced": "2025-06-16T00:00:00Z"
+  }
+}

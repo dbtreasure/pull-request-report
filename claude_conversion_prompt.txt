@@ -1,0 +1,35 @@
+
+I need to convert a PR analysis markdown summary to styled HTML matching a specific template, with fidelity verification.
+
+**Task Overview:**
+Convert the markdown summary at `reports/paxton-app-api/summary.md` to HTML matching the visual style of `pr_analysis_pdf.html`, then verify conversion fidelity.
+
+**Specific Requirements:**
+1. Read `reports/paxton-app-api/summary.md` and understand its content structure
+2. Read `pr_analysis_pdf.html` to understand the CSS styling patterns  
+3. Convert the markdown to HTML using the same visual styling approach
+4. Map content appropriately to CSS classes (overview-box, pattern-section, issues-list, improvements-list, strengths-list, recommendations, focus-areas, conclusion, etc.)
+5. Preserve ALL original information - no additions, no omissions
+6. Verify conversion fidelity by comparing original and converted content
+7. Save the HTML output as `reports/paxton-app-api/analysis-report.html`
+8. Generate PDF using available tools (weasyprint or wkhtmltopdf)
+
+**Key Styling Guidelines from Template:**
+- Use overview-box for introductory content with PR lists
+- Use pattern-section for main analysis sections  
+- Use issues-list (red border) for problems/recurring issues
+- Use improvements-list (green border) for improvement actions
+- Use strengths-list (blue border) for positive observations
+- Use recommendations (orange border) for actionable recommendations
+- Use focus-areas (purple border) for future focus areas
+- Use conclusion (green border) for summary/conclusion
+- Maintain proper spacing, typography, and print-friendly formatting
+
+**Critical Quality Checks:**
+- Verify no content is lost or added during conversion
+- Ensure proper HTML structure and CSS class usage
+- Validate that visual hierarchy matches content importance
+- Confirm all sections are appropriately styled
+- Check that the output is both web and print-friendly
+
+Please proceed with this conversion process step by step, ensuring high fidelity to the original content while achieving professional visual presentation.

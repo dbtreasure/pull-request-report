@@ -33,6 +33,8 @@ When a user says any of these phrases, initiate the setup process:
    - "How would you describe your role or contributions to this repository?"
    - "What specific areas would you like to improve? (e.g., async patterns, API design, testing)"
    - "Would you like to add another repository? (yes/no)"
+   - "Do you have an engineering documentation repository? (yes/no)"
+     - If yes: "What's the GitHub URL for your engineering docs? (e.g., https://github.com/org/docs)"
 
 3. **Create config.json**:
    Based on their answers, generate a config.json file. Example:
@@ -51,11 +53,22 @@ When a user says any of these phrases, initiate the setup process:
        "author": "their-username",
        "pr_limit": 10,
        "include_closed_prs": true
+     },
+     "engineering_docs": {
+       "github_url": "https://github.com/org/docs",
+       "enabled": true,
+       "last_synced": null
      }
    }
    ```
 
-4. **Verify Setup**:
+4. **Sync Engineering Docs** (if provided):
+   - Clone and process engineering documentation
+   - Extract relevant code standards and best practices
+   - Save processed docs to `engineering-docs/` directory
+   - Update last_synced timestamp
+
+5. **Verify Setup**:
    - Test repository access: `gh repo view {repo}`
    - Create reports directory: `mkdir -p reports`
    - Confirm: "Setup complete! Would you like me to analyze your recent PRs now?"
@@ -70,6 +83,10 @@ pull-request-report/
 ├── config.template.json         # Template for repository configuration
 ├── config.json                  # User's actual configuration (gitignored)
 ├── .gitignore                   # Excludes private reports and configs
+├── engineering-docs/            # Processed engineering standards (gitignored)
+│   ├── standards.md             # Extracted coding standards
+│   ├── best-practices.md        # Best practices relevant to PR reviews
+│   └── guidelines.md            # Team-specific guidelines
 └── reports/                     # Generated analysis reports (gitignored)
     └── {repo-name}/
         ├── intro.md             # Auto-generated context file
@@ -94,13 +111,41 @@ When starting an analysis session, first read the user's config.json to understa
 - The user's GitHub username
 - Learning goals and focus areas
 - Analysis settings (PR limits, etc.)
+- Engineering documentation repository (if configured)
 
 ```bash
 # Read the configuration
 cat config.json
 ```
 
-### Step 2: Create Repository Structure
+### Step 2: Sync Engineering Documentation (if configured)
+
+If engineering docs are configured and enabled:
+
+1. **Check if sync is needed**:
+   ```bash
+   # Check last_synced timestamp in config
+   # If null or older than 7 days, sync the docs
+   ```
+
+2. **Clone and process the documentation**:
+   ```bash
+   # Clone the engineering docs repo
+   gh repo clone {engineering_docs_url} /tmp/eng-docs
+   
+   # Process relevant files (e.g., *.md files about coding standards)
+   # Extract sections about:
+   # - Code style guidelines
+   # - API design patterns
+   # - Testing standards
+   # - Review best practices
+   ```
+
+3. **Save processed docs**:
+   - Create summaries in `engineering-docs/` directory
+   - Update last_synced timestamp in config
+
+### Step 3: Create Repository Structure
 
 For each repository in the config:
 
@@ -118,7 +163,7 @@ For each repository in the config:
    Focus Areas: {focus_areas}
    ```
 
-### Step 3: Analyze Pull Requests
+### Step 4: Analyze Pull Requests
 
 1. **Authenticate with GitHub CLI**: `gh auth status`
 
@@ -132,9 +177,15 @@ For each repository in the config:
    - Review comments: `gh api repos/{owner}/{repo}/pulls/{pr-number}/comments`
    - Review summaries: `gh api repos/{owner}/{repo}/pulls/{pr-number}/reviews`
 
-### Step 4: Generate Analysis Reports
+### Step 5: Generate Analysis Reports
 
-Create reports in `reports/{repo-name}/pull-requests/PR-{number}-{title}.md` following this template:
+Create reports in `reports/{repo-name}/pull-requests/PR-{number}-{title}.md` following this template.
+
+**If engineering docs are available**, incorporate them by:
+- Comparing review feedback against documented standards
+- Highlighting where issues align with or deviate from team guidelines
+- Adding references to relevant sections of the engineering docs
+- Using team-specific terminology and best practices
 
 ```markdown
 # PR #{number}: {title}
@@ -209,6 +260,8 @@ When users say these phrases, take the corresponding action:
 - **"Add another repository"** / **"Add repo"** - Add a new repository to config.json
 - **"Analyze just [repo-name]"** - Analyze only the specified repository
 - **"Update my config"** / **"Change settings"** - Modify existing configuration
+- **"Sync engineering docs"** / **"Update docs"** - Re-sync engineering documentation from configured repo
+- **"Add engineering docs"** - Add engineering documentation repository to existing config
 
 ## Common Analysis Commands
 

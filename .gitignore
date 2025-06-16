@@ -1,6 +1,7 @@
 # Private analysis reports and repository-specific content
 /reports/
 /repos/
+/engineering-docs/
 
 # User-specific configuration
 config.json

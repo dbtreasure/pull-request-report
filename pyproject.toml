@@ -1,0 +1,59 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pull-request-report"
+version = "1.0.0"
+description = "AI-powered code review analysis tool for identifying patterns in pull request feedback"
+readme = "README.md"
+authors = [
+    {name = "Pull Request Report Contributors"}
+]
+license = {text = "MIT"}
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "weasyprint>=62.0",
+    "markdown>=3.5",
+    "jinja2>=3.1.0",
+    "typer>=0.9.0",
+    "rich>=13.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "black>=23.0",
+    "ruff>=0.1.0",
+]
+
+[project.scripts]
+pr-report = "pull_request_report.cli:app"
+
+[project.urls]
+Homepage = "https://github.com/your-org/pull-request-report"
+Repository = "https://github.com/your-org/pull-request-report"
+Issues = "https://github.com/your-org/pull-request-report/issues"
+
+[tool.ruff]
+line-length = 88
+target-version = "py38"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "C4", "ARG", "SIM"]
+ignore = ["E501", "E741"]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']

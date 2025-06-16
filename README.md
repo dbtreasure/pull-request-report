@@ -1,30 +1,29 @@
 # Pull Request Report
 
-A tool for analyzing code review feedback patterns to help developers improve their code quality.
+An AI-powered tool for analyzing code review feedback patterns to help developers improve their code quality.
 
-## 🚀 Quick Start (2 minutes)
+## 🚀 Quick Start (1 minute)
 
 ### Prerequisites
-- **[Claude Code](https://claude.ai/code)** - AI coding assistant (required)
-- **GitHub CLI** - `brew install gh` (macOS) or [see other platforms](https://github.com/cli/cli#installation)
+- **[uvx](https://github.com/astral-sh/uv)** - Python package runner (for easy execution)
+- **GitHub CLI** - `brew install gh` (macOS) or [see installation](https://github.com/cli/cli#installation)
 
-### Setup
+### One-Command Setup
 ```bash
-# 1. Clone and enter the repository
-git clone https://github.com/dbtreasure/pull-request-report
-cd pull-request-report
-
-# 2. Authenticate GitHub (if needed)
-gh auth login
-
-# 3. Open in Claude Code
-claude code .
-
-# 4. Tell Claude:
-"Set me up"
+# 1. Clone and run setup
+git clone https://github.com/dbtreasure/pull-request-report && cd pull-request-report
+./scripts/setup.sh
 ```
 
-That's it! Claude will guide you through the rest. 🎉
+That's it! The setup script will check prerequisites and guide you through configuration. 🎉
+
+## 🔧 Alternative: Using Claude Code
+
+If you prefer AI-guided setup:
+```bash
+# Open in Claude Code and say: "Set me up"
+claude code .
+```
 
 ## 📖 Detailed Setup
 
@@ -40,12 +39,39 @@ This tool analyzes your pull request comments to help you:
 
 ## 💬 How to Use
 
-Once set up, just tell Claude:
+### Option 1: Convenience Scripts
+```bash
+# Analyze your PRs
+./scripts/analyze.sh
 
+# Convert reports to PDF
+./scripts/convert.sh
+
+# Run tests
+./scripts/test.sh
+```
+
+### Option 2: Direct uvx Commands
+```bash
+# Setup and configuration
+uvx --from . pr-report setup
+
+# Analyze PRs (10 by default)
+uvx --from . pr-report analyze --repo owner/repo --count 20
+
+# Convert markdown to styled PDF
+uvx --from . pr-report convert --pdf
+
+# Run comprehensive tests
+uvx --from . --with pytest python test/run_tests.py
+```
+
+### Option 3: Using Claude Code
+Tell Claude any of these:
 - **"Analyze my recent PRs"** - Run analysis on all configured repos
 - **"Show me my improvement areas"** - See feedback patterns
 - **"Add another repository"** - Expand your analysis
-- **"Analyze just [repo-name]"** - Focus on specific repo
+- **"Convert reports to PDF"** - Generate professional PDFs
 
 ## 📊 Example Output
 
