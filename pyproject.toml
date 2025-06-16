@@ -10,7 +10,7 @@ readme = "README.md"
 authors = [
     {name = "Pull Request Report Contributors"}
 ]
-license = {text = "MIT"}
+license = {file = "LICENSE"}
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",

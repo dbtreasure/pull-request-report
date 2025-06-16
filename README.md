@@ -19,11 +19,29 @@ That's it! The setup script will check prerequisites and guide you through confi
 
 ## 🔧 Alternative: Using Claude Code
 
-If you prefer AI-guided setup:
+If you prefer AI-guided setup with Claude Code:
+
+### Installing Claude Code
 ```bash
-# Open in Claude Code and say: "Set me up"
-claude code .
+# 1. Install Claude Code (requires Node.js 18+)
+npm install -g @anthropic-ai/claude-code
+
+# 2. Navigate to your project directory
+cd pull-request-report
+
+# 3. Start Claude Code
+claude
+
+# 4. Tell Claude: "Set me up"
 ```
+
+**System Requirements:**
+- macOS 10.15+, Ubuntu 20.04+/Debian 10+, or Windows via WSL
+- Node.js 18+ 
+- 4GB RAM minimum
+- Claude Pro/Max plan or Anthropic Console access
+
+**📖 Full Installation Guide:** [docs.anthropic.com/claude-code/getting-started](https://docs.anthropic.com/en/docs/claude-code/getting-started)
 
 ## 📖 Detailed Setup
 
@@ -135,3 +153,44 @@ Each report includes:
 ## Contributing
 
 Feel free to submit issues or PRs to improve this tool!
+
+## 📄 License
+
+This project is licensed under the MIT License - see below for details.
+
+### MIT License
+
+```
+MIT License
+
+Copyright (c) 2025 Pull Request Report Contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+### Usage and Attribution
+
+This software is free to use, modify, and distribute. When using or modifying this tool:
+
+- ✅ **Use for any purpose** (personal, commercial, educational)
+- ✅ **Modify and distribute** freely
+- ✅ **No attribution required** (but appreciated!)
+- ✅ **Include in larger projects** without restriction
+
+**Optional Attribution:** If you find this tool helpful, consider linking back to the original repository or mentioning it in your project documentation.
