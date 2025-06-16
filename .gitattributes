@@ -1,0 +1,38 @@
+# Git attributes for Pull Request Report
+
+# Text files
+*.md text eol=lf
+*.txt text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.toml text eol=lf
+
+# Python files
+*.py text eol=lf
+
+# Shell scripts
+*.sh text eol=lf
+
+# Ensure shell scripts are executable
+scripts/*.sh text eol=lf
+test/run_tests.py text eol=lf
+
+# HTML/CSS files
+*.html text eol=lf
+*.css text eol=lf
+
+# Binary files
+*.pdf binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+
+# Archive files
+*.zip binary
+*.tar.gz binary
+
+# Linguist language detection
+test/fixtures/* linguist-documentation
+reports/* linguist-generated
+*.md linguist-detectable

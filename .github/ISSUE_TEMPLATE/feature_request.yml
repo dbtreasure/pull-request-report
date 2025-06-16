@@ -1,0 +1,64 @@
+name: Feature Request
+description: Suggest a new feature or enhancement
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a new feature! Please fill out the sections below.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Description
+      description: What problem does this feature solve?
+      placeholder: Describe the problem you're trying to solve
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: How should this feature work?
+      placeholder: Describe your proposed solution
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: What other approaches did you consider?
+      placeholder: Describe alternative solutions you've considered
+
+  - type: dropdown
+    id: complexity
+    attributes:
+      label: Implementation Complexity
+      description: How complex do you think this feature would be?
+      options:
+        - Low (simple configuration or text changes)
+        - Medium (new functionality, requires some development)
+        - High (major changes, significant development effort)
+        - Unknown
+
+  - type: checkboxes
+    id: impact
+    attributes:
+      label: Impact
+      description: What areas would this feature affect?
+      options:
+        - label: CLI interface
+        - label: Report generation
+        - label: PDF conversion
+        - label: GitHub integration
+        - label: Configuration
+        - label: Documentation
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any other context or screenshots about the feature request

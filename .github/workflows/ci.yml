@@ -1,0 +1,102 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
+      with:
+        version: "latest"
+
+    - name: Set up Python ${{ matrix.python-version }}
+      run: uv python install ${{ matrix.python-version }}
+
+    - name: Install GitHub CLI
+      run: |
+        if [[ "$RUNNER_OS" == "Linux" ]]; then
+          sudo apt-get update
+          sudo apt-get install -y gh
+        elif [[ "$RUNNER_OS" == "macOS" ]]; then
+          brew install gh
+        fi
+
+    - name: Install wkhtmltopdf
+      run: |
+        if [[ "$RUNNER_OS" == "Linux" ]]; then
+          sudo apt-get install -y wkhtmltopdf
+        elif [[ "$RUNNER_OS" == "macOS" ]]; then
+          brew install wkhtmltopdf
+        fi
+
+    - name: Install dependencies
+      run: |
+        uv sync --all-extras
+
+    - name: Run tests
+      run: |
+        uv run python test/run_tests.py
+
+    - name: Test CLI installation
+      run: |
+        uv run pr-report --help
+
+    - name: Test scripts (Ubuntu only)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        chmod +x scripts/*.sh
+        ./scripts/check.sh || true  # Don't fail if GitHub auth not available
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
+
+    - name: Set up Python
+      run: uv python install 3.11
+
+    - name: Install dependencies
+      run: uv sync --all-extras
+
+    - name: Run ruff (if available)
+      run: |
+        uv run ruff check . || echo "Ruff not configured, skipping"
+
+    - name: Check pyproject.toml syntax
+      run: |
+        uv run python -c "import tomllib; tomllib.load(open('pyproject.toml', 'rb'))"
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        scan-ref: '.'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+
+    - name: Upload Trivy scan results
+      uses: github/codeql-action/upload-sarif@v3
+      if: always()
+      with:
+        sarif_file: 'trivy-results.sarif'

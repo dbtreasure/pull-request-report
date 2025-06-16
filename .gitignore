@@ -6,8 +6,16 @@
 # User-specific configuration
 config.json
 
+# Test outputs
+test/outputs/
+
 # OS files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
 # IDE files
@@ -15,15 +23,71 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+*~
 
 # Python
 __pycache__/
 *.py[cod]
 *$py.class
 .Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
 venv/
 env/
+ENV/
+.venv
 .env
 
-# Logs
+# PyCharm
+.idea/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# uvx/uv
+.uv/
+
+# Logs and temporary files
 *.log
+*.tmp
+*.temp
+
+# Package files
+*.tar.gz
+*.zip
+
+# Local test configurations
+test_config.json
+.test_*
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+.hypothesis/
+
+# Security
+.secrets
+*.key
+*.pem
